@@ -7,3 +7,5 @@ Trabalho feito para a matéria de Programação Orientada a Objetos da UNDB.
 __Feito por:__ [André Gustavo Xavier dos Santos](https://github.com/andregustavoxs), Christhian Gabriel Carvalho Gonçalves, Leonardo de Almeida Rodrigues, [Lucas Gabriel Pereira Pestana](https://github.com/LucasGPestana), Marcus Fernando Santos Cuba, Maurício Ernani Pinheiro Carvalho, Miguel Farias Ramos Araújo, Pedro Lucas Pires Lopes e [Samuel Victor Avelino Araújo](https://github.com/Samuelz38)
 
 __Orientador:__ Nelson Weber Neto
+
+Repositório na conta de [André Gustavo Xavier dos Santos](https://github.com/andregustavoxs): [Clique Aqui](https://github.com/andregustavoxs/django-covid)
