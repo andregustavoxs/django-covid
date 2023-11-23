@@ -4,7 +4,46 @@
     <meta charset="UTF-8">
     <title>Index</title>
 </head>
+<style>
+    @import url(https://db.onlinewebfonts.com/c/4e2a44223ab20891f50f16b7f54b595f?family=Sebino+Regular);
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        height: 100vh;
+        box-sizing: border-box;
+        background-color: #61707D;
+    }
+
+    .apresentacao {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Sebino Regular";
+        margin-top: 250px;
+        color: #080F0F;
+        letter-spacing: 1px;
+    }
+
+    .imagem {
+        margin-right: 20px;
+    }
+
+    .link {
+        text-decoration: none;
+        margin-left: 10px;
+        color: #0993d9;
+    }
+
+</style>
+
 <body>
-<h1>Deseja acessar os dados?<a href="{% url 'login' %}">Clique aqui</a></h1>
+    <main class="apresentacao">
+        <img class="imagem" width="80" height="80" src="rounded-logo.png" alt="Logo-do-database">
+        <h1 class="apresentacao_texto">Deseja acessar os dados?<a class="link" href="{% url 'login' %}">Clique aqui</a></h1>
+    </main>
 </body>
 </html>

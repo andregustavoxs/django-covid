@@ -1,23 +1,159 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Página de Login</title>
-</head>
+ </head>
+<style>
+    @import url(https://db.onlinewebfonts.com/c/beb757e32b8d552ad7996638e1b477ef?family=Maza+W05+Bold);
+
+    @import url(https://db.onlinewebfonts.com/c/2e1730d2463ec6f16d797996864c6f16?family=PF+Din+Text+Universal+Medium);
+    
+    @import url(https://db.onlinewebfonts.com/c/4e2a44223ab20891f50f16b7f54b595f?family=Sebino+Regular);
+
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+  
+    body {
+      height: 100%;
+      box-sizing: border-box;
+      width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      background-color: #61707D;
+    }
+    #login .container #login-row #login-column #login-box {
+      margin-top: 150px;
+      margin-left: 30px;
+      max-width: 400px;
+      height: 400px;
+      border: 2px solid #9C9C9C;
+      background-color: #EAEAEA;
+    }
+    #login .container #login-row #login-column #login-box #login-form {
+      padding: 50px;
+    }
+    #login .container #login-row #login-column #login-box #login-form #register-link {
+      margin-top: -80px;
+    }
+
+    .text-info {
+      font-family: "Maza W05 Bold";
+      font-size: 16px;
+      color: #313338;
+    }
+
+    .submitbutton {
+      background-color: #61707D;
+      color: #f2f3f5;
+      font-family: "PF Din Text Universal Medium";
+      width: 60px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+      border: 0;
+    }
+
+    .criar__conta {
+      font-family: "Sebino Regular";
+      font-size: 14px;
+      color: #313338;
+      text-decoration: none;
+    }
+
+    .apresentacao__links__link {
+      text-decoration: none;
+      color: #0993d9;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: 0.2px;
+    }
+
+    .form-group {
+      height: 55px;
+      margin-left: 60px;
+    }
+
+    .imagem {
+      margin-bottom: 20px;
+      margin-top: -20px;
+      margin-left: 110px
+    }
+
+    .submitbutton {
+      margin-top: 10px;}
+
+    .msg-alertas{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width:95%;
+      overflow:hidden;
+      margin:0 auto;
+      padding:10px;
+      background-color:#FFFFFF;
+    }
+
+    .ms{
+        width: 95%;
+        margin:auto;
+        padding:1em;
+        float:left;
+        display:block;
+        margin-bottom:10px;
+        font-family:Verdana, Arial, Helvetica, sans-serif;
+        font-weight:100;
+        font-size:16px;
+    }
+
+    .erro   { background-color:#FFCACA; border:2px #a60202 solid; color:#a60202; border-radius:5px; }
+    .ok     { background-color:#A6FFBC; border:2px #00bd00 solid; color:#00bd00; border-radius:5px; }
+    .alerta { background-color:#FFFFBF; border:2px #2b2b2b solid; color:#2b2b2b; border-radius:5px; }
+    .info   { background-color:#B3E7FF; border:2px #018ace solid; color:#018ace; border-radius:5px; }
+
+
+</style>
 <body>
-  <form method="POST" action="{% url 'dashboard' %}">
-    {% csrf_token %}
-    <div class="container">
-      <label for="username">Nome de usuário</label>
-      <input type="text" id="username" name="username" autocomplete="off">
+  <body>
+    <div id="login">
+
+        {% if message %}
+          <div class="msg-alertas">
+            {% for message in messages %}
+              {% if message.level == 40 %}
+                <span class="ms erro">{{ message.message }}</span>
+              {% else %}
+                <span class="ms ok">{{ message.message }}</span>
+              {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        
+        <div class="container">
+            <div id="login-row" class="row justify-content-center align-items-center">
+                <div id="login-column" class="col-md-6">
+                    <div id="login-box" class="col-md-12">
+                        <form id="login-form" class="form" action="" method="post">
+                          <img class="imagem" src="../images/rounded-logo.png" alt="Logo-do-database" width="80" height="80">
+                                <div class="form-group">
+                                <label for="username" class="text-info">Usuário:</label><br>
+                                <input type="text" name="username" id="username" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="text-info">Senha:</label><br>
+                                <input type="password" name="password" id="password" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="remember-me" class="text-info"><span>Lembrar-me</span> <span><input id="remember-me" name="remember-me" type="checkbox"></span></label><br>
+                                <input type="submit" name="Entrar" class="btn btn-info btn-md submitbutton" value="Entrar">
+                                <p class="criar__conta">Não tem uma conta? <a class="apresentacao__links__link" href="{% url 'cadastro' %}">Registre-se</a></p>
+                            </div>
+                          
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="container">
-      <label for="password">Senha</label>
-      <input type="password" id="password" name="password">
-    </div>
-    <p>Ainda não se cadastrou?<a href="{% url 'cadastro' %}">Clique aqui</a></p>
-    <input type="submit" value="Logar">
-  </form>
 </body>
 </html>
+

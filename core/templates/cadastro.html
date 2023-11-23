@@ -1,38 +1,60 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Página de Cadastro</title>
-  <style>
-    input { padding: 10px; }
+</head>
+<style>
+    @import url(https://db.onlinewebfonts.com/c/beb757e32b8d552ad7996638e1b477ef?family=Maza+W05+Bold);
 
-    body { overflow: hidden; }
+    @import url(https://db.onlinewebfonts.com/c/2e1730d2463ec6f16d797996864c6f16?family=PF+Din+Text+Universal+Medium);
+
+    @import url(https://db.onlinewebfonts.com/c/2a70761a38a4aecdf21165f98a3627ba?family=Exo+Extra+Bold);
+
+    body {
+        height: 100%;
+        box-sizing: border-box;
+        width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #61707D;
+        margin-top: 100px;
+    }
+
+    input {
+        padding: 10px;
+    }
+
 
     .note {
-    text-align: center;
-    height: 80px;
-    background: -webkit-linear-gradient(left, #0072ff, #8811c5);
-    color: #fff;
-    font-weight: bold;
-    line-height: 80px;
-    margin: 5px auto; /* Centraliza o elemento horizontalmente */
-     display: block;
-
+        text-align: center;
+        height: 80px;
+        background: #EAEAEA;
+        border: 2px solid #9C9C9C;
+        font-weight: bold;
+        line-height: 25px;
+        display: block;
+        font-family: "PF Din Text Universal Medium";
+        font-size: 22px;
+        letter-spacing: 2px;
     }
 
     .form-content {
-        padding: 2%;
-        border: 0.3px solid #ced4da;
+        background: #EAEAEA;
+        padding: 5%;
+        border: 2px solid #9C9C9C;
         margin-bottom: 5%;
-        margin: 5px auto; /* Centraliza o elemento horizontalmente */
-          display:block;
+        display:block;
     }
 
     .form-control {
-        border-radius:0.1rem;
-        margin: 5px auto; /* Centraliza o elemento horizontalmente */
-          display:block;
+        width: 170px;
+        border-radius: 4px;
+        margin: 7px auto; /* Centraliza o elemento horizontalmente */
+        display: block;
+        font-family: "Maza W05 Bold";
     }
 
     .btnSubmit {
@@ -41,21 +63,27 @@
         padding: 1%;
         width: 20%;
         cursor: pointer;
-        background: #0062cc;
-        color: #fff;
+        background: #61707D;
+        color: #f2f3f5;
         margin: 5px auto; /* Centraliza o elemento horizontalmente */
-         display:block;
+        display:block;
+        border-radius: 4px
+    }
+
+    .btnSubmit {
+        font-family: "PF Din Text Universal Medium";
+        letter-spacing: 1px;
     }
 
     .msg-alertas{
-         display: flex;
-         justify-content: center;
-         align-items: center;
-         width:95%;
-         overflow:hidden;
-         margin:0 auto;
-         padding:10px;
-         background-color:#FFFFFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width:95%;
+        overflow:hidden;
+        margin:0 auto;
+        padding:10px;
+        background-color:#FFFFFF;
     }
 
     .ms{
@@ -74,49 +102,52 @@
     .ok     { background-color:#A6FFBC; border:2px #00bd00 solid; color:#00bd00; border-radius:5px; }
     .alerta { background-color:#FFFFBF; border:2px #2b2b2b solid; color:#2b2b2b; border-radius:5px; }
     .info   { background-color:#B3E7FF; border:2px #018ace solid; color:#018ace; border-radius:5px; }
-    
-  </style>
-</head>
-<body>
 
+
+</style>
+<body>
   {% if messages %}
-      <div class="msg-alertas">
+    <div class="msg-alertas">
       {% for message in messages %}
-          <!-- #40 corresponde a um Message com level 'error' -->
-          {% if message.level == 40 %}
-            <span class="ms erro">{{ message.message }}</span>
-          {% else %}
-            <span class="ms ok">{{ message.message }}</span>
-          {% endif %}
+        {% if message.level == 40}
+          <span class="ms erro">{{ message.message }}</span>
+        {% else %}
+          <span class="ms ok">{{ message.message }}</span>
+        {% endif %}
       {% endfor %}
-      </div>
+    </div>
   {% endif %}
-<form method="POST" action="{% url 'cadastrar' %}">
-    {% csrf_token %}
+  <form method="POST" action="{% url 'cadastrar' %}">
+   {% csrf_token %}
     <div class="container register-form">
       <div class="form">
-          <div class="note">
-              <p>CADASTRE-SE</p>
+          <div class="note">           
+            <h3>Criar uma conta</h3>
           </div>
-
+      </div>
+    </div>
           <div class="form-content">
               <div class="row">
                   <div class="col-md-3">
                       <div class="form-group">
-                          <input type="text" class="form-control" name="username" id="username" placeholder="Nome de Usuario *" value=""/>
+                          <input type="text" class="form-control" name="username" id="username" placeholder="Nome de Usuário *" value=""/>
                       </div>
                       <div>
+                      
+                  </div>
                       <div class="col-md-3">
                         <div class="form-group">
                             <input type="text" class="form-control" name="first-name" id="first-name" placeholder="Primeiro nome *" value=""/>
                         </div>
+                      </div>
                         <div class="row">
                         <div class="form-group">
                             <input type="text" class="form-control" name="last-name" id="last-name" placeholder="Último nome *" value=""/>
                         </div>
+                        </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="email" id="email" placeholder="E-mail*" value=""/>
+                                <input type="text" class="form-control" name="email" id="email" placeholder="E-mail *" value=""/>
                             </div>
                         </div>
                     </div>
@@ -125,16 +156,16 @@
                   <div class="row">
                   <div class="col-md-3">
                       <div class="form-group">
-                          <input type="text" class="form-control" name="password" id="password" placeholder="Senha *" value=""/>
+                          <input type="password" class="form-control" name="password" id="password" placeholder="Senha *" value=""/>
                       </div>
                       <div class="form-group">
-                          <input type="text" class="form-control" name="confirm-password" id="confirm-password" placeholder="Confirmar senha *" value=""/>
+                          <input type="password" class="form-control" name="confirm-password" id="confirm-password" placeholder="Confirmar senha *" value=""/>
                       </div>
                   </div>
               </div>
-                          <input type="submit" class="btnSubmit" value="Enviar">
-                    </div>
-                </div>
+              <input type="submit" class="btnSubmit" value="Enviar">
+          </div>
+      </div>
               </div>
           </div>
       </div>
@@ -142,3 +173,4 @@
   </form>
 </body>
 </html>
+ 
