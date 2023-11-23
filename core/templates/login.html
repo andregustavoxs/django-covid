@@ -10,11 +10,11 @@
     @import url(https://db.onlinewebfonts.com/c/beb757e32b8d552ad7996638e1b477ef?family=Maza+W05+Bold);
 
     @import url(https://db.onlinewebfonts.com/c/2e1730d2463ec6f16d797996864c6f16?family=PF+Din+Text+Universal+Medium);
-    
+
     @import url(https://db.onlinewebfonts.com/c/4e2a44223ab20891f50f16b7f54b595f?family=Sebino+Regular);
 
     @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
-  
+
     body {
       height: 100%;
       box-sizing: border-box;
@@ -90,7 +90,7 @@
       overflow:hidden;
       margin:0 auto;
       padding:10px;
-      background-color:#FFFFFF;
+      background-color:#61707D;
     }
 
     .ms{
@@ -113,7 +113,6 @@
 
 </style>
 <body>
-  <body>
     <div id="login">
 
         {% if message %}
@@ -127,13 +126,14 @@
             {% endfor %}
           </div>
         {% endif %}
-        
+
         <div class="container">
             <div id="login-row" class="row justify-content-center align-items-center">
                 <div id="login-column" class="col-md-6">
                     <div id="login-box" class="col-md-12">
-                        <form id="login-form" class="form" action="" method="post">
-                          <img class="imagem" src="../images/rounded-logo.png" alt="Logo-do-database" width="80" height="80">
+                        <form id="login-form" class="form" action="{% url 'dashboard' %}" method="post">
+                            {% csrf_token %}
+                          <img class="imagem" src="" alt="Logo-do-database" width="80" height="80">
                                 <div class="form-group">
                                 <label for="username" class="text-info">Usuário:</label><br>
                                 <input type="text" name="username" id="username" class="form-control">
@@ -147,7 +147,7 @@
                                 <input type="submit" name="Entrar" class="btn btn-info btn-md submitbutton" value="Entrar">
                                 <p class="criar__conta">Não tem uma conta? <a class="apresentacao__links__link" href="{% url 'cadastro' %}">Registre-se</a></p>
                             </div>
-                          
+
                         </form>
                     </div>
                 </div>

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -83,7 +82,7 @@
         overflow:hidden;
         margin:0 auto;
         padding:10px;
-        background-color:#FFFFFF;
+        background-color:#61707D;
     }
 
     .ms{
@@ -109,7 +108,7 @@
   {% if messages %}
     <div class="msg-alertas">
       {% for message in messages %}
-        {% if message.level == 40}
+        {% if message.level == 40 %}
           <span class="ms erro">{{ message.message }}</span>
         {% else %}
           <span class="ms ok">{{ message.message }}</span>
@@ -121,7 +120,7 @@
    {% csrf_token %}
     <div class="container register-form">
       <div class="form">
-          <div class="note">           
+          <div class="note">
             <h3>Criar uma conta</h3>
           </div>
       </div>
@@ -133,7 +132,7 @@
                           <input type="text" class="form-control" name="username" id="username" placeholder="Nome de Usuário *" value=""/>
                       </div>
                       <div>
-                      
+
                   </div>
                       <div class="col-md-3">
                         <div class="form-group">
@@ -165,12 +164,7 @@
               </div>
               <input type="submit" class="btnSubmit" value="Enviar">
           </div>
-      </div>
-              </div>
-          </div>
-      </div>
-    </div>
   </form>
 </body>
 </html>
- 
+
