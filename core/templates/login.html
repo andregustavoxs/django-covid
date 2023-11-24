@@ -1,4 +1,4 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -134,6 +134,8 @@
                         <form id="login-form" class="form" action="{% url 'dashboard' %}" method="post">
                             {% csrf_token %}
                           <img class="imagem" src="https://github.com/andregustavoxs/streamlit-covid-dashboard/blob/main/rounded-logo.png?raw=true" alt="Logo-do-database" width="80" height="80">
+                          <img class="imagem" src="{% static 'rounded-logo.png' %}" alt="Logo-do-database" width="80" height="80">
+
                                 <div class="form-group">
                                 <label for="username" class="text-info">Usuário:</label><br>
                                 <input type="text" name="username" id="username" class="form-control">
@@ -154,6 +156,7 @@
             </div>
         </div>
     </div>
+    <script src="{% static 'index.js' %}"></script>
 </body>
 </html>
 

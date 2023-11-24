@@ -29,86 +29,54 @@ def cadastrar(request):
                 # Substitui (Até o tamanho do nome de usuário vezes)
                 # pontos ou underlines por hifens o nome de usuário passado (Caso tenha algum desses caracteres)
 
-                if verify_username(request.POST["username"]):
+                validations = [
+	                lambda x: verify_username(x['username']),
+	                lambda x: verify_name(x['first-name'], "first-name"),
+	                lambda x: verify_name(x['last-name'], "last-name"),
+	                lambda x: verify_mail(x['email']),
+	                lambda x: verify_password(x['password']),
+	                lambda x: check_passwords(x['password'], x['confirm-password']),
+                    lambda x: exist_username(x['username']),
+                    lambda x: exist_mail(x['email'])
+                ]
 
-                    if verify_password(request.POST["password"]):
+                for validation in validations:
 
-                        if verify_mail(request.POST["email"]):
+                    result, message = validation(request.POST)
+                    
+                    # Mostra as mensagens apenas se o valor de result for False
+                    # A mensagem de erro (message) também é pega se result for True (Menos em verify_name, exist_username e exist_mail)
+                    if not result:
 
-                            if verify_name(request.POST["first-name"]):
+                        messages.error(request, message)
 
-                                if verify_name(request.POST["last-name"]):
+                        redirect(reverse('cadastro'))     
 
-                                    if not exist_username(request.POST["username"]):
+                user = User(username=request.POST["username"],
+                            password=request.POST["password"],
+                            email=request.POST["email"].lower(),
+                            first_name=request.POST["first-name"].capitalize(),
+                            last_name=request.POST["last-name"].capitalize())
 
-                                        if not exist_mail(request.POST["email"]):
+                user.set_password(request.POST["password"])  # Criptografa a senha
+                user.is_superuser = 0  # Define que o usuário cadastrado não é um superusuário
 
-                                            if check_passwords(request.POST["password"], request.POST["confirm-password"]):
+                user.save()
 
-                                                user = User(username=request.POST["username"],
-                                                            password=request.POST["password"],
-                                                            email=request.POST["email"],
-                                                            first_name=request.POST["first-name"].capitalize(),
-                                                            last_name=request.POST["last-name"].capitalize())
-
-                                                user.set_password(request.POST["password"])  # Criptografa a senha
-                                                user.is_superuser = 0  # Define que o usuário cadastrado não é um superusuário
-
-                                                user.save()
-
-                                                return redirect(reverse('login'))  # Redireciona para a tela de login
-
-                                            else:
-
-                                                messages.error(request, "As senhas não coincidem!")
-                                                return redirect(reverse('cadastro'))
-
-                                        else:
-
-                                            messages.error(request, "O e-mail digitado já existe!")
-
-                                            return redirect(reverse('cadastro'))
-
-                                    else:
-
-                                        messages.error(request, "O nome de usuário digitado já existe!")
-
-                                        return redirect(reverse('cadastro'))
-
-                                else:
-
-                                    messages.error(request, "O último nome digitado é inválido! " +
-                                                            "Ele pode conter apenas letras e espaços (sem números)!")
-
-                                    return redirect(reverse('cadastro'))
-
-                            else:
-                                messages.error(request, "O primeiro nome digitado é inválido! " +
-                                                        "Ele pode conter apenas letras e espaços (sem números)!")
-                                return redirect(reverse('cadastro'))
-
-                        else:
-                            messages.error(request, "O e-mail digitado é inválido! " +
-                                                    "Ele deve conter, pelo menos, o arroba (@) e o ponto do subdomínio, " +
-                                                    "e não pode conter caracteres especiais e acentuados" +
-                                                    "(Ex: johndoe12345@gmail.com)!")
-
-                            return redirect(reverse('cadastro'))
-                    else:
-                        messages.error(request, "A senha digitada deve conter pelo menos uma letra minúscula," +
-                                                " uma letra maíuscula e um número!")
-
-                        return redirect(reverse('cadastro'))
-                else:
-                    messages.error(request, "O nome de usuário digitado é inválido! " +
-                                            "Lembre-se que ele só pode conter letras (exceto os acentuados), " +
-                                            "números, underlines(_) ou pontos(.)!")
-
-                    return redirect(reverse('cadastro'))
+                return redirect(reverse('login'))  # Redireciona para a tela de login
 
         except MultiValueDictKeyError as exc:
 
             messages.error(request, exc)
+            return redirect(reverse('cadastro'))
+        
+        except Exception as exc:
+
+            messages.error(request, "Houve um erro inesperado!")
+
+            # Para o desenvolvedor
+            print(exc)
+
             return redirect(reverse('cadastro'))
 
     else:
