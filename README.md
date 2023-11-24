@@ -9,5 +9,3 @@ Trabalho feito na disciplina de Programação Orientada a Objetos da UNDB.
 Feito por: André Gustavo Xavier dos Santos, Christhian Gabriel Carvalho Gonçalves, Leonardo de Almeida Rodrigues, Lucas Gabriel Pereira Pestana, Marcus Fernando Santos Cuba, Maurício Ernani Pinheiro Carvalho, Miguel Farias Ramos Araújo, Pedro Lucas Pires Lopes e Samuel Victor Avelino Araújo
 
 Orientador: Nelson Weber Neto
-
-Repositório na conta de André Gustavo Xavier dos Santos: Clique Aqui
