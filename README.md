@@ -1,11 +1,11 @@
-# Sistema Django Sobre a COVID-19
+# django-covid
 
-Sistema criado pelos alunos da UNDB com o intuito de mostrar alguns dados sobre a covid-19 no brasil, entre 2020 e 2021, em forma de gráficos.
+Sistema Nexus - Dashboard da Covid-19 no Brasil
 
-Trabalho feito para a matéria de Programação Orientada a Objetos da UNDB.
+Sistema criado pelos alunos da UNDB com o intuito de mostrar alguns dados sobre a covid-19 no Brasil, entre 2020 e 2021, em forma de gráficos.
 
-__Feito por:__ [André Gustavo Xavier dos Santos](https://github.com/andregustavoxs), Christhian Gabriel Carvalho Gonçalves, Leonardo de Almeida Rodrigues, [Lucas Gabriel Pereira Pestana](https://github.com/LucasGPestana), Marcus Fernando Santos Cuba, Maurício Ernani Pinheiro Carvalho, Miguel Farias Ramos Araújo, Pedro Lucas Pires Lopes e [Samuel Victor Avelino Araújo](https://github.com/Samuelz38)
+Trabalho feito na disciplina de Programação Orientada a Objetos da UNDB.
 
-__Orientador:__ Nelson Weber Neto
+Feito por: André Gustavo Xavier dos Santos, Christhian Gabriel Carvalho Gonçalves, Leonardo de Almeida Rodrigues, Lucas Gabriel Pereira Pestana, Marcus Fernando Santos Cuba, Maurício Ernani Pinheiro Carvalho, Miguel Farias Ramos Araújo, Pedro Lucas Pires Lopes e Samuel Victor Avelino Araújo
 
-Repositório na conta de [André Gustavo Xavier dos Santos](https://github.com/andregustavoxs): [Clique Aqui](https://github.com/andregustavoxs/django-covid)
+Orientador: Nelson Weber Neto
