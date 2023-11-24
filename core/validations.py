@@ -8,10 +8,9 @@ def verify_username(username):
     # Nome de usuário pode conter maíusculas, minúsculas, underlines e pontos
     username_pattern = re.compile(r"[A-Za-z0-9_.]+")
 
-    if username_pattern.fullmatch(username) != None:
-        return True
-    else:
-        return False
+    msg = msg = "O nome de usuário digitado é inválido! Lembre-se que ele só pode conter letras (exceto os acentuados), números, underlines(_) ou pontos(.)!"
+        
+    return username_pattern.fullmatch(username) != None, msg
 
 
 def verify_password(password):
@@ -34,23 +33,22 @@ def verify_password(password):
         if c in numbers:
             has_number = True
 
-    if [has_lowercase_letter, has_uppercase_letter, has_number] == [True, True, True]:
-        return True
-    else:
-        return False
+
+    msg = "A senha digitada deve conter pelo menos uma letra minúscula, uma letra maíuscula e um número!"
+
+    return all([has_lowercase_letter, has_uppercase_letter, has_number]), msg
 
 
 def verify_mail(email):
 
     mail_pattern = re.compile(r"[a-z0-9]+@[a-z]+.[a-z]+")
 
-    if mail_pattern.fullmatch(email.lower()) != None:
-        return True
-    else:
-        return False
+    msg = "O e-mail digitado é inválido! Ele deve conter, pelo menos, o arroba (@) e o ponto do subdomínio, e não pode conter caracteres especiais e acentuados (Ex: johndoe12345@gmail.com)!"
+
+    return mail_pattern.fullmatch(email) != None, msg
 
 
-def verify_name(name):
+def verify_name(name, field):
 
     space_pattern = re.compile(r"\s")
     name_pattern = re.compile(r"[A-Za-záÁóÓÚúéÉÍíêãâõç]+")
@@ -61,9 +59,17 @@ def verify_name(name):
 
         if name_pattern.fullmatch(part_name) == None:
 
-            return False
+            if field == "first-name":
 
-    return True
+                msg = "O primeiro nome digitado é inválido! Ele pode conter apenas letras e espaços (sem números)!"
+
+            else:
+
+                msg = "O último nome digitado é inválido! Ele pode conter apenas letras e espaços (sem números)!"
+
+            return False, msg
+
+    return True, None
 
 
 def exist_username(username):
@@ -78,7 +84,9 @@ def exist_username(username):
 
     except User.DoesNotExist:
 
-        return False
+        msg = "O e-mail digitado já existe!"
+
+        return False, msg
 
 
 def exist_mail(email):
@@ -87,22 +95,19 @@ def exist_mail(email):
 
         user = User.objects.get(email=email)
 
-        return True
+        return True, None
 
     except User.DoesNotExist:
 
-        return False
+        msg = "O nome de usuário digitado já existe!"
+
+        return False, msg
 
 
 def check_passwords(password, confirm_password):
 
-    if password == confirm_password:
+    msg = "As senhas não coincidem!"
 
-        return True
-
-    else:
-
-        return False
-
+    return password == confirm_password, msg
 
 

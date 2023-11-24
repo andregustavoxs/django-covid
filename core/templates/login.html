@@ -1,4 +1,4 @@
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -133,7 +133,7 @@
                     <div id="login-box" class="col-md-12">
                         <form id="login-form" class="form" action="{% url 'dashboard' %}" method="post">
                             {% csrf_token %}
-                          <img class="imagem" src="" alt="Logo-do-database" width="80" height="80">
+                          <img class="imagem" src="{% static 'rounded-logo.png' %}" alt="Logo-do-database" width="80" height="80">
                                 <div class="form-group">
                                 <label for="username" class="text-info">Usuário:</label><br>
                                 <input type="text" name="username" id="username" class="form-control">
@@ -154,6 +154,7 @@
             </div>
         </div>
     </div>
+    <script src="{% static 'index.js' %}"></script>
 </body>
 </html>
 
