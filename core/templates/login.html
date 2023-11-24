@@ -133,7 +133,7 @@
                     <div id="login-box" class="col-md-12">
                         <form id="login-form" class="form" action="{% url 'dashboard' %}" method="post">
                             {% csrf_token %}
-                          <img class="imagem" src="https://github.com/andregustavoxs/streamlit-covid-dashboard/blob/main/rounded-logo.png?raw=true" alt="Logo-do-database" width="80" height="80">
+
                           <img class="imagem" src="{% static 'rounded-logo.png' %}" alt="Logo-do-database" width="80" height="80">
 
                                 <div class="form-group">
