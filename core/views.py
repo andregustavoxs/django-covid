@@ -83,7 +83,6 @@ def cadastrar(request):
         print(f"Método da requisição: {request.method}")
         pass
 
-
 @never_cache
 def login(request):
 
@@ -122,8 +121,7 @@ def dashboard(request):
 
         except User.DoesNotExist:
 
-            messages.error(request, "O nome de usuário digitado não existe! " +
-                                    "Você foi redirecionado para a página de cadastro para efetuá-lo!")
+            messages.error(request, "O nome de usuário digitado não existe! Você foi redirecionado para a página de cadastro para efetuá-lo!")
 
             return redirect(reverse('cadastro'))
 
