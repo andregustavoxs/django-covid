@@ -53,7 +53,7 @@ def verify_password(password):
 
 def verify_mail(email):
 
-    mail_pattern = re.compile(r"[a-z0-9]+@[a-z]+.[a-z]+")
+    mail_pattern = re.compile(r"[a-z0-9]+@[a-z]+\.[a-z]+")
 
     if mail_pattern.fullmatch(email) != None:
 
@@ -90,7 +90,7 @@ def verify_name(name, field):
     return True, None
 
 
-def exist_username(username):
+def not_exist_username(username):
 
     try:
 
@@ -98,28 +98,28 @@ def exist_username(username):
         # parametro
         user = User.objects.get(username=username)
 
-        return True, None
-
-    except User.DoesNotExist:
-
-        msg = "O e-mail digitado já existe!"
+        msg = "O nome de usuário digitado já existe!"
 
         return False, msg
 
+    except User.DoesNotExist:
 
-def exist_mail(email):
+        return True, None
+
+
+def not_exist_mail(email):
 
     try:
 
         user = User.objects.get(email=email)
 
-        return True, None
+        msg = "O e-mail digitado já existe!"
+
+        return False, msg
 
     except User.DoesNotExist:
 
-        msg = "O nome de usuário digitado já existe!"
-
-        return False, msg
+        return True, None
 
 
 def check_passwords(password, confirm_password):
