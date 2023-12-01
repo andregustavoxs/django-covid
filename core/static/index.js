@@ -1,3 +1,4 @@
+/*
 window.onload = function() {
 
   let inicio = new Date()
@@ -21,3 +22,4 @@ window.onload = function() {
   if (mensagem) mensagem.style.setProperty('display', 'none')
 
 }
+*/

@@ -33,11 +33,11 @@ def cadastrar(request):
 	                lambda x: verify_username(x['username']),
 	                lambda x: verify_name(x['first-name'], "first-name"),
 	                lambda x: verify_name(x['last-name'], "last-name"),
-	                lambda x: verify_mail(x['email']),
+	                lambda x: verify_mail(x['email'].lower()),
 	                lambda x: verify_password(x['password']),
 	                lambda x: check_passwords(x['password'], x['confirm-password']),
-                    lambda x: exist_username(x['username']),
-                    lambda x: exist_mail(x['email'])
+                    lambda x: not_exist_username(x['username']),
+                    lambda x: not_exist_mail(x['email'])
                 ]
 
                 for validation in validations:
@@ -50,7 +50,7 @@ def cadastrar(request):
 
                         messages.error(request, message)
 
-                        redirect(reverse('cadastro'))     
+                        return redirect(reverse('cadastro'))     
 
                 user = User(username=request.POST["username"],
                             password=request.POST["password"],
@@ -82,7 +82,6 @@ def cadastrar(request):
     else:
         print(f"Método da requisição: {request.method}")
         pass
-
 
 @never_cache
 def login(request):
@@ -122,8 +121,7 @@ def dashboard(request):
 
         except User.DoesNotExist:
 
-            messages.error(request, "O nome de usuário digitado não existe! " +
-                                    "Você foi redirecionado para a página de cadastro para efetuá-lo!")
+            messages.error(request, "O nome de usuário digitado não existe! Você foi redirecionado para a página de cadastro para efetuá-lo!")
 
             return redirect(reverse('cadastro'))
 

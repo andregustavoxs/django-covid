@@ -8,9 +8,15 @@ def verify_username(username):
     # Nome de usuário pode conter maíusculas, minúsculas, underlines e pontos
     username_pattern = re.compile(r"[A-Za-z0-9_.]+")
 
-    msg = msg = "O nome de usuário digitado é inválido! Lembre-se que ele só pode conter letras (exceto os acentuados), números, underlines(_) ou pontos(.)!"
-        
-    return username_pattern.fullmatch(username) != None, msg
+    if username_pattern.fullmatch(username) != None:
+
+        return True, None
+    
+    else:
+
+        msg = "O nome de usuário digitado é inválido! Lembre-se que ele só pode conter letras (exceto os acentuados), números, underlines(_) ou pontos(.)!"
+            
+        return False, msg
 
 
 def verify_password(password):
@@ -34,18 +40,30 @@ def verify_password(password):
             has_number = True
 
 
-    msg = "A senha digitada deve conter pelo menos uma letra minúscula, uma letra maíuscula e um número!"
+    if all([has_lowercase_letter, has_uppercase_letter, has_number]):
 
-    return all([has_lowercase_letter, has_uppercase_letter, has_number]), msg
+        return True, None
+    
+    else:
+
+        msg = "A senha digitada deve conter pelo menos uma letra minúscula, uma letra maíuscula e um número!"
+
+        return False, msg
 
 
 def verify_mail(email):
 
-    mail_pattern = re.compile(r"[a-z0-9]+@[a-z]+.[a-z]+")
+    mail_pattern = re.compile(r"[a-z0-9]+@[a-z]+\.[a-z]+")
 
-    msg = "O e-mail digitado é inválido! Ele deve conter, pelo menos, o arroba (@) e o ponto do subdomínio, e não pode conter caracteres especiais e acentuados (Ex: johndoe12345@gmail.com)!"
+    if mail_pattern.fullmatch(email) != None:
 
-    return mail_pattern.fullmatch(email) != None, msg
+        return True, None
+    
+    else:
+
+        msg = "O e-mail digitado é inválido! Ele deve conter, pelo menos, o arroba (@) e o ponto do subdomínio, e não pode conter caracteres especiais e acentuados (Ex: johndoe12345@gmail.com)!"
+
+        return False, msg
 
 
 def verify_name(name, field):
@@ -72,7 +90,7 @@ def verify_name(name, field):
     return True, None
 
 
-def exist_username(username):
+def not_exist_username(username):
 
     try:
 
@@ -80,34 +98,39 @@ def exist_username(username):
         # parametro
         user = User.objects.get(username=username)
 
-        return True
-
-    except User.DoesNotExist:
-
-        msg = "O e-mail digitado já existe!"
+        msg = "O nome de usuário digitado já existe!"
 
         return False, msg
 
+    except User.DoesNotExist:
 
-def exist_mail(email):
+        return True, None
+
+
+def not_exist_mail(email):
 
     try:
 
         user = User.objects.get(email=email)
 
-        return True, None
+        msg = "O e-mail digitado já existe!"
+
+        return False, msg
 
     except User.DoesNotExist:
 
-        msg = "O nome de usuário digitado já existe!"
-
-        return False, msg
+        return True, None
 
 
 def check_passwords(password, confirm_password):
 
-    msg = "As senhas não coincidem!"
+    if password == confirm_password:
 
-    return password == confirm_password, msg
+        return True, None
+    else:
+
+        msg = "As senhas não coincidem!"
+
+        return False, msg
 
 
